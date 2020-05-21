@@ -110,6 +110,11 @@ namespace llvm {
   //
   ModulePass *createMustBeExecutedContextPrinter();
 
+  // Legacy analysis passes
+#define LEGACY_FUNCTION_ANALYSIS_PASS(name) \
+  FunctionPass *create ## name ## Pass();
+#include "llvm/JVS/LegacyPasses.def"
+
 }
 
 #endif

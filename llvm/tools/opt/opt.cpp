@@ -603,6 +603,13 @@ int main(int argc, char **argv) {
   initializeExampleIRTransforms(Registry);
 #endif
 
+  // Legacy passes
+#define LEGACY_FUNCTION_ANALYSIS_PASS(name) \
+  initialize ## name ## Pass(Registry);
+#define LEGACY_FUNCTION_TRANSFORM_PASS(name) \
+  initialize ## name ## Pass(Registry);
+#include "llvm/JVS/LegacyPasses.def"
+
   cl::ParseCommandLineOptions(argc, argv,
     "llvm .bc -> .bc modular optimizer and analysis printer\n");
 

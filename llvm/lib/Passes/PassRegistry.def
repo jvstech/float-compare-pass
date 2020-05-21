@@ -154,6 +154,8 @@ FUNCTION_ALIAS_ANALYSIS("cfl-steens-aa", CFLSteensAA())
 FUNCTION_ALIAS_ANALYSIS("scev-aa", SCEVAA())
 FUNCTION_ALIAS_ANALYSIS("scoped-noalias-aa", ScopedNoAliasAA())
 FUNCTION_ALIAS_ANALYSIS("type-based-aa", TypeBasedAA())
+// Custom function analysis passes
+#include "llvm/JVS/Passes.def"
 #undef FUNCTION_ALIAS_ANALYSIS
 #undef FUNCTION_ANALYSIS
 
@@ -261,6 +263,8 @@ FUNCTION_PASS("kasan", AddressSanitizerPass(true, false, false))
 FUNCTION_PASS("msan", MemorySanitizerPass({}))
 FUNCTION_PASS("kmsan", MemorySanitizerPass({0, false, /*Kernel=*/true}))
 FUNCTION_PASS("tsan", ThreadSanitizerPass())
+// Custom function transform/printer passes
+#include "llvm/JVS/Passes.def"
 #undef FUNCTION_PASS
 
 #ifndef FUNCTION_PASS_WITH_PARAMS

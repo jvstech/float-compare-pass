@@ -431,6 +431,12 @@ void initializeWinEHPreparePass(PassRegistry&);
 void initializeWriteBitcodePassPass(PassRegistry&);
 void initializeWriteThinLTOBitcodePass(PassRegistry&);
 void initializeXRayInstrumentationPass(PassRegistry&);
+// Legacy passes
+#define LEGACY_FUNCTION_ANALYSIS_PASS(name) \
+  void initialize ## name ## Pass(PassRegistry&);
+#define LEGACY_FUNCTION_TRANSFORM_PASS(name) \
+  void initialize ## name ## Pass(PassRegistry&);
+#include "llvm/JVS/LegacyPasses.def"
 
 } // end namespace llvm
 

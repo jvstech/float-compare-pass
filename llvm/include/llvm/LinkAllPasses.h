@@ -232,6 +232,13 @@ namespace {
       (void) llvm::createInjectTLIMappingsLegacyPass();
       (void) llvm::createUnifyLoopExitsPass();
 
+      // Legacy passes
+#define LEGACY_FUNCTION_ANALYSIS_PASS(name) \
+  static_cast<void>(llvm::create ## name ## Pass());
+#define LEGACY_FUNCTION_TRANSFORM_PASS(name) \
+  static_cast<void>(llvm::create ## name ## Pass());
+#include "llvm/JVS/LegacyPasses.def"
+
       (void)new llvm::IntervalPartition();
       (void)new llvm::ScalarEvolutionWrapperPass();
       llvm::Function::Create(nullptr, llvm::GlobalValue::ExternalLinkage)->viewCFGOnly();

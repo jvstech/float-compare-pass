@@ -104,6 +104,11 @@ add_llvm_component_library(LLVMAnalysis
   ADDITIONAL_HEADER_DIRS
   ${LLVM_MAIN_INCLUDE_DIR}/llvm/Analysis
 
+  LINK_LIBS
+  JVSAnalysis
+
   DEPENDS
   intrinsics_gen
   )
+
+add_subdirectory(JVS)

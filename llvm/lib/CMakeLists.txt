@@ -34,3 +34,5 @@ if (LLVM_INCLUDE_TESTS)
   add_subdirectory(Testing)
 endif()
 add_subdirectory(WindowsManifest)
+
+add_subdirectory(JVS)

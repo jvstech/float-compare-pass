@@ -85,6 +85,11 @@ void llvm::initializeAnalysis(PassRegistry &Registry) {
   initializeLCSSAVerificationPassPass(Registry);
   initializeMemorySSAWrapperPassPass(Registry);
   initializeMemorySSAPrinterLegacyPassPass(Registry);
+  // Legacy analysis passes
+#define LEGACY_FUNCTION_ANALYSIS_PASS(name) \
+  initialize ## name ## Pass(Registry);
+#include "llvm/JVS/LegacyPasses.def"
+
 }
 
 void LLVMInitializeAnalysis(LLVMPassRegistryRef R) {

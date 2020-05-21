@@ -283,6 +283,11 @@ ModulePass *createSampleProfileLoaderPass(StringRef Name);
 ModulePass *createWriteThinLTOBitcodePass(raw_ostream &Str,
                                           raw_ostream *ThinLinkOS = nullptr);
 
+// Legacy transform passes
+#define LEGACY_FUNCTION_TRANSFORM_PASS(name) \
+  FunctionPass *create ## name ## Pass();
+#include "llvm/JVS/LegacyPasses.def"
+
 } // End llvm namespace
 
 #endif

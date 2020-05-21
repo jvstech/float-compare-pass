@@ -1,0 +1,18 @@
+// Analysis passes
+
+#if !defined(FUNCTION_ANALYSIS)
+#define FUNCTION_ANALYSIS(name, create_pass)
+#endif
+
+FUNCTION_ANALYSIS("jvs-fcmp-eq-analysis", jvs::FloatCompareAnalysis())
+
+
+// Printer/transform passes
+
+#if !defined(FUNCTION_PASS)
+#define FUNCTION_PASS(name, create_pass)
+#endif
+
+FUNCTION_PASS("print<jvs-fcmp-eq-analysis>",
+  jvs::FloatCompareAnalysisPrinter(dbgs()))
+FUNCTION_PASS("jvs-fcmp-eq-transform", jvs::FloatCompareTransform())

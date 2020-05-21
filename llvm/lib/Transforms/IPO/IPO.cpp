@@ -62,6 +62,11 @@ void llvm::initializeIPO(PassRegistry &Registry) {
   initializeSampleProfileLoaderLegacyPassPass(Registry);
   initializeFunctionImportLegacyPassPass(Registry);
   initializeWholeProgramDevirtPass(Registry);
+  // Legacy transform passes
+#define LEGACY_FUNCTION_TRANSFORM_PASS(name) \
+  initialize ## name ## Pass(Registry);
+#include "llvm/JVS/LegacyPasses.def"
+
 }
 
 void LLVMInitializeIPO(LLVMPassRegistryRef R) {
